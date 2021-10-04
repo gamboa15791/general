@@ -6,6 +6,14 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
+
+  <!-- metas de google
+  <meta name="google-signin-scope" content="profile email">
+  <meta name="google-signin-client_id" content="923518685008-srrthm80tbj2j5ih4bc11nsivqd229l8.apps.googleusercontent.com">
+   <script src="https://apis.google.com/js/platform.js" async defer></script> 
+  <script src='https://apis.google.com/js/platform.js?onload=onload' async defer></script> 
+  <script src='js/google.js'></script> -->
+
   <title>eMercado - Todo lo que busques está aquí</title>
 
   <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
@@ -24,18 +32,22 @@
       <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
       <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
-          </div>
+    </div>
   </nav>
 
   <div class="container p-5">
+
+    <p>Usuario: <input type="text" name="usuario" size="40" id="user"></p>
+    <p>Contraseña: <input type="password" name="contraseña" id="pass"></p>
+    <button class="btn btn-primary" id="conectar" onclick="verificar();">Conectar</button>
+
+    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
     
-      <p>Usuario: <input type="text" name="usuario" size="40" id="user"></p>
-      <p>Contraseña: <input type="password" name="contraseña" id="pass"></p>
-     <button class="btn btn-primary" id="conectar" onclick="verificar();" >Conectar</button>   
 
-
-  <script src="js/init.js"></script>
-  <script src="js/login.js"></script>
+    <script src="js/init.js"></script>
+    <script src="js/login.js"></script>
 </body>
+
+
 
 </html>

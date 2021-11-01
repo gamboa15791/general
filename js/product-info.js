@@ -4,6 +4,8 @@ let relatedProductsArray = [];
 
 let productsArray = []
 
+let comment = [];
+
 function showImagesGallery(array) {
 
     let htmlContentToAppend = "";
@@ -39,10 +41,6 @@ function showImagesGallery(array) {
 
  document.getElementById("slide").innerHTML = htmlSlides;
 }*/
-
-
-let comment = [];
-
 
 function showProductComments(array) {
     let htmlContentToAppend = "";

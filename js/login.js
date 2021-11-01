@@ -6,17 +6,24 @@ function verificar() {
 
     /* Creamos la variable dato que será igual a lo que ingresemos en el campo con id user*/
     let dato = document.getElementById('user');
+    let password = document.getElementById('password');
 
     /*realizo la condición de la verificación, extrayendo el valor de la variable dato  
     y quitando los espacios antes y despues con ".trim()" */
-    if (dato.value.trim() === '') {
+    if (dato.value.trim() === ''|| password.value.trim() === '' ) {
 
-        alert('Está vacío');
+        alert('Algún campo está vacío');
     }
     else {
         location.href = 'index.html';
         usuario.nombre = dato.value; // guarda en 'usuario' el elemento 'nombre' con valor 'lo escrito en dato'
         usuario.estado = 'Conectado'; //estado del usuario
+        usuario.passwordUser= password.value;
+        usuario.edad = '';
+        usuario.mail = '';
+        usuario.phone = '';
+        usuario.apellido = '';
+        usuario.imagen='';
         localStorage.setItem('usuario', JSON.stringify(usuario));
     }
 }

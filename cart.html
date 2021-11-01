@@ -45,16 +45,48 @@
       <a class="py-2 d-none d-md-inline-block" href="categories.html">Categorías</a>
       <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
-      <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
+      <a class="py-2 d-none d-md-inline-block" href="cart.html" id="cart">Mi carrito</a>
+      <a class="py-2 d-none d-md-inline-block" href="login.html" id="ingresar">Ingresar</a>
+      <span class="py-2 d-none d-md-inline-block" id="userBox"></span>
     </div>
   </nav>
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 5 (Fecha de entrega: 17/10/2021) y Entrega 7 (Fecha de entrega: 14/11/2021).</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+
+  <div class="container">
+    <div>
+      <h3 style="margin-bottom: 30px;">Tu carrito: </h3>
     </div>
+    
+    <div class="album py-5 bg-light">
+      <div class="container">
+        <div class="row text-center text-lg-left pt-2" id="cartProducts">
+        </div>
+        
+      </div>
+      
+    
+    </div>
+
+     
+
+  <div class="container">
+    <div class="row justify-content-md-center">
+  <div class="col-lg-20 col-md-50 col-30">
+    <input type="radio" name="boton" value="1"> Enviar a domicilio 
+    <input type="radio" name="boton" value="2"> Retirar en tienda
+  </div>
+</div>
+</div>
+
+<div class="container">
+  <div class="row justify-content-md-center">
+<div class="col-lg-20 col-md-50 col-30" id="total">
+
+</div>
+</div>
+</div>
+
+
+
   </div>
   <div id="spinner-wrapper">
     <div class="lds-ring">

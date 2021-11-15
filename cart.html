@@ -17,6 +17,8 @@
   <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
 
+  <link rel="stylesheet" type="text/css" href="assets/css/demo.css">
+
   <style>
     .bd-placeholder-img {
       font-size: 1.125rem;
@@ -33,9 +35,41 @@
       }
     }
   </style>
+
+<style>
+  .is-invalid {
+  border-color:#ee1717;  
+  background-color: #ffdddd;
+  }
+  .is-valid {
+  border-color: green;  
+  background-color: #ddffdd;
+  }
+  .bien{
+      color:green;
+  }
+  .mal{
+      color:red;
+  }
+
+</style>
+<script
+src="https://code.jquery.com/jquery-3.5.1.min.js"
+integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+
+
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
   <link href="css/dropzone.css" rel="stylesheet">
+
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/dropzone.js"></script>
+  <script src="js/init.js"></script>
+  <script src="js/cart.js"></script>
 </head>
 
 <body>
@@ -63,6 +97,13 @@
         
       </div>
       
+      <div class="container">
+        <div class="row justify-content-md-center">
+      <div class="col-lg-20 col-md-50 col-30" id="total">
+      
+      </div>
+      </div>
+      </div>
     
     </div>
 
@@ -71,21 +112,33 @@
   <div class="container">
     <div class="row justify-content-md-center">
   <div class="col-lg-20 col-md-50 col-30">
-    <input type="radio" name="boton" value="1"> Enviar a domicilio 
-    <input type="radio" name="boton" value="2"> Retirar en tienda
+    <input type="radio" name="boton" id="envioDomicilio" value="15" onclick="document.getElementById('porcentajeEnvio').innerHTML='15'" > Enviar a domicilio (15%)
+    <input type="radio" name="boton" id="envioExpres" value="30" onclick="document.getElementById('porcentajeEnvio').innerHTML='30'"> Envio express (30%)
+    <input type="radio" name="boton" value="0" onclick="document.getElementById('porcentajeEnvio').innerHTML='0'"> Retirar en tienda (Gratis)
   </div>
+
+</div><br>
+
+Por el envío seleccionado, se cobrará el siguiente porcentaje adicional : <span id="porcentajeEnvio"></span>
 </div>
-</div>
+<br>
+
+TOTAL MÁS ENVÍO = <span id="totalMasEnvio"></span>
+
 
 <div class="container">
-  <div class="row justify-content-md-center">
-<div class="col-lg-20 col-md-50 col-30" id="total">
 
-</div>
-</div>
-</div>
+        <div class="row text-center text-lg-left pt-2" id="">
 
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalScrollable">
+  Método de pago
+</button>  <p>Seleccionaste: <span id="metodoPago"></span></p>
 
+<br>
+
+       </div>
+                
+      </div>
 
   </div>
   <div id="spinner-wrapper">
@@ -96,11 +149,101 @@
       <div></div>
     </div>
   </div>
-  <script src="js/jquery-3.4.1.min.js"></script>
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="js/dropzone.js"></script>
-  <script src="js/init.js"></script>
-  <script src="js/cart.js"></script>
+  
+
+  <!-- INICIO Modal metodo de pago-->
+<div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalScrollableTitle">Seleccionar método de pago</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+          <p>Seleccione el método de su preferencia: <br>
+            <input type="radio" name="opcion" id="pagoConTdc" onclick="metodoPago();" checked> Tarjeta de Crédito <br>
+            <input type="radio" name="opcion"  onclick="metodoPago();"> Transferencia Bancaria
+          </p>
+        
+
+        <span id="pagarCon"></span>
+<!--
+        <div name='TDC'>
+          <dl >
+          <dt> Tarjeta de Crédito  </dt>
+            
+          <form>
+            <div class="form-group owner">
+                <label for="owner">Nombre en la tarjeta</label>
+                <input type="text" class="form-control" id="owner">
+            </div>
+            <div class="form-group CVV">
+                <label for="cvv">CVV</label>
+                <input type="text" class="form-control" id="cvv">
+            </div>
+            <div class="form-group" id="card-number-field">
+                <label for="cardNumber">Card Number</label>
+                <input type="text" class="form-control" id="cardNumber">
+            </div>
+            <div class="form-group" id="expiration-date">
+                <label>Expiration Date</label>
+                <select>
+                    <option value="01">January</option>
+                    <option value="02">February </option>
+                    <option value="03">March</option>
+                    <option value="04">April</option>
+                    <option value="05">May</option>
+                    <option value="06">June</option>
+                    <option value="07">July</option>
+                    <option value="08">August</option>
+                    <option value="09">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                </select>
+                <select>
+                    <option value="21"> 2021</option>
+                    <option value="22"> 2022</option>
+                    <option value="23"> 2023</option>
+                    <option value="24"> 2024</option>
+                    <option value="25"> 2025</option>
+                    <option value="26"> 2026</option>
+                </select>
+            </div>
+            <div class="form-group" id="credit_cards">
+                <img src="img/logovisa.png" id="visa" width="20">
+                <img src="img/logomaster.png" id="mastercard" width="20">
+                <img src="img/logoamex.png" id="amex" width="20">
+            </div>
+             Envío de pago particular de tdc
+            <div class="form-group" id="pay-now">
+                <button type="submit"  id="confirm-purchase">Confirm</button>
+            </div>
+        </form>
+          </dl>
+        </div> <br>
+        <div name='Transferencia'>
+          <dl >
+          <dt>Transferencia bancaria</dt>
+          <dd>Banco: <input type="text" name="texto" placeholder="" id="newUserName"></dd>
+          <dd>No. de Cuenta:<input type="text" name="texto" placeholder="" id="newUserLastName"> </dd>
+          <dd>No. de Comprobante:<input type="number" name="numero" placeholder="" id="newUserAge"> </dd>
+          </dl>
+        </div> <br>
+        -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" id="guardar" onclick="pagar();">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- FIN Modal metodo de pago-->
+
 </body>
 
 </html>

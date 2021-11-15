@@ -88,7 +88,7 @@ if (file) {
   reader.readAsDataURL(file);
  
 } else {
-  previewPhoto.src = "logousuario.png";
+  previewPhoto.src = "img/logousuario.png";
 }
 
 }
@@ -121,10 +121,10 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
   if(usuario.imagen !== ""){
 
-    document.getElementById('foto').src = usuario.imagen;
+    document.getElementById('photo').src = usuario.imagen;
 
     }else {
-      previewPhoto.src = "logousuario.png";
+      previewPhoto.src = "img/logousuario.png";
     }
 
     
